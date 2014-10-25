@@ -11,6 +11,10 @@ var Initialize = function()
 	
 	player = new Ship();
 	world = new World();
+	world.populate();	
+	player.location = world.startNode;
+	
+	PrintFirstRunText();
 }
 
 var OnUpdate = function()
@@ -35,7 +39,9 @@ var ParseCommand = function(text)
 		{
 			if (commands[i].test(text))
 			{
+				world.preCheck(text);
 				outputarea.innerHTML += Clean(commands[i].run());
+				world.postCheck(text);
 			}
 		}
 		catch(err)
@@ -53,4 +59,11 @@ var Clean = function(text)
 		text = text.replace("\n", "<br />");
 	
 	return text;
+}
+
+var PrintFirstRunText = function()
+{
+	outputarea.innerHTML += Clean("Welcome, AI!\n");
+	outputarea.innerHTML += Clean("Your mission is to do something...\n");
+	outputarea.innerHTML += Clean(player.location.description + "\n");	
 }
