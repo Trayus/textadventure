@@ -1,6 +1,13 @@
 <html>
 	<title>Text Adventure</title>
-	<body>
-		Test
+	<script src="main.js"> </script>
+	<script src="Ship.js"> </script>
+	<script src="World.js"> </script>
+	
+	<script src="ScanCommand.js"> </script>
+	
+	<body onload="Initialize();">
+		<p id="outputarea" style="background:#ddd;width:500;height:300;overflow-y:scroll;"></p>
+		<textarea rows="1" cols="50" id="inputarea" oninput="OnUpdate();" style="resize:none;"></textarea>
 	</body>
 </html>
