@@ -15,7 +15,9 @@ var World = function()
 		
 		for (var i = 0; i < numNodes && possibleNodes.length > 0; i++)
 		{
-			self.map.push(possibleNodes.splice(Math.floor(Math.random() * possibleNodes.length), 1)[0]);
+			var newNode = possibleNodes.splice(Math.floor(Math.random() * possibleNodes.length), 1)[0];
+			newNode.initializeFeatures();
+			self.map.push(newNode);
 		}
 		
 		for (var i = 0; i < self.map.length; i++)
@@ -63,5 +65,19 @@ var World = function()
 		{
 			self.map[i].postCheck();
 		}
+	}
+
+	this.findTarget = function(targetName) 
+	{
+		for (var i = 0; i < player.location.features.length; i++)
+		{
+			var feature = player.location.features[i];
+			for (var j = 0; j < feature.names.length; j++)
+			{
+				if (targetName.indexOf(feature.names[j]) > -1)
+					return feature;
+			}
+		}
+		return null;
 	}
 }

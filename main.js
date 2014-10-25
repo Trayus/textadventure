@@ -33,30 +33,32 @@ var OnUpdate = function()
 
 var ParseCommand = function(text)
 {
+	PrintLog("\n> " + text);
+
 	var i;
 	for (i = 0; i < commands.length; i++)
 	{
-		try
-		{
+		// try
+		// {
 			if (commands[i].test(text))
 			{
 				world.preCheck(text);
-				outputarea.innerHTML += Clean(commands[i].run(text));
+				PrintLog(commands[i].run(text));
 				world.postCheck(text);
 				
 				break;
 			}
-		}
-		catch(err)
-		{
-			console.log("command broke: ");
-			console.log(com);
-		}
+		// }
+		// catch(err)
+		// {
+		// 	console.log("command broke: ");
+		// 	console.log(err);
+		// }
 	}
 	
 	if (i == commands.length)
 	{
-		outputarea.innerHTML += Clean("Please enter a valid command.");
+		outputarea.innerHTML += Clean("Please enter a valid command.\n");
 	}
 	
 	outputarea.scrollTop = outputarea.scrollHeight;
@@ -84,11 +86,18 @@ var PrintLog = function(text)
 
 var GeneralScanResult = function()
 {
-	PrintLog("You are in " + player.location.description + ".\nIn the distance you see ");
+	PrintLog("Current location: " + player.location.description + ".\nIn the distance, your scanners detect ");
 	for (var i = 0; i < player.location.links.length; i++)
 	{
 		PrintLog(player.location.links[i].description);
 		if (i + 1 != player.location.links.length)
+			PrintLog(", ");
+	}
+	PrintLog(".\nNearby, your scanners detect ");
+	for (var i = 0; i < player.location.features.length; i++)
+	{
+		PrintLog(player.location.features[i].description);
+		if (i + 1 != player.location.features.length)
 			PrintLog(", ");
 	}
 	PrintLog(".\n");

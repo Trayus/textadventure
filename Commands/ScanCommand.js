@@ -21,9 +21,20 @@ var ScanCommand = function()
 			GeneralScanResult();
 			return "";
 		}
-		else if (true /* detect specific feature*/)
+		else
 		{
-			return "scanning";
+			var target = world.findTarget(items[1]);
+			if (target != null)
+			{
+				if (target.scan)
+				{
+					return target.scan();
+				}
+			}
+			else
+			{
+				return "Cannot scan target.";
+			}
 		}
 	}
 }
