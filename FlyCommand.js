@@ -8,7 +8,7 @@ var FlyCommand = function()
 		}
 	}
 
-	this.run = function()
+	this.run = function(text)
 	{
 		return "flying\n\n";
 	}

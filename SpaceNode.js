@@ -3,7 +3,9 @@ var spaceNodePossibleFeatures = new Array();
 var SpaceNode = function()
 {
 	this.features = new Array();
-	this.description = "You are in open space.";
+	this.links = new Array();
+	this.description = "open space";
+	this.names = ["open space", "space"];
 	
 	this.preCheck = function()
 	{

@@ -18,11 +18,31 @@ var World = function()
 			self.map.push(possibleNodes.splice(Math.floor(Math.random() * possibleNodes.length), 1)[0]);
 		}
 		
-		// todo link up the nodes so you can travel between them
-		
+		for (var i = 0; i < self.map.length; i++)
+		{
+			for (var j = i + 1; j < self.map.length; j++)
+			{
+				if (Math.random() > 0.3 && self.map[i].links.indexOf(self.map[j]) < 0)
+				{
+					self.map[i].links.push(self.map[j]);
+					self.map[j].links.push(self.map[i]);
+				}
+			}
+		}
+		for (var i = 0; i < self.map.length; i++)
+		{
+			if (self.map[i].links.length == 0)
+			{
+				var ndx = Math.floor(Math.random() * self.map.length);
+				while (ndx == i)
+					ndx = Math.floor(Math.random() * self.map.length);
+				
+				self.map[i].links.push(self.map[ndx]);
+				self.map[ndx].links.push(self.map[i]);
+			}
+		}
 		
 		this.startNode = self.map[Math.floor(Math.random() * self.map.length)];
-		
 		
 		console.log(self.map);
 		console.log(self.startNode);

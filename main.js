@@ -33,15 +33,18 @@ var OnUpdate = function()
 
 var ParseCommand = function(text)
 {
-	for (var i = 0; i < commands.length; i++)
+	var i;
+	for (i = 0; i < commands.length; i++)
 	{
 		try
 		{
 			if (commands[i].test(text))
 			{
 				world.preCheck(text);
-				outputarea.innerHTML += Clean(commands[i].run());
+				outputarea.innerHTML += Clean(commands[i].run(text));
 				world.postCheck(text);
+				
+				break;
 			}
 		}
 		catch(err)
@@ -50,6 +53,12 @@ var ParseCommand = function(text)
 			console.log(com);
 		}
 	}
+	
+	if (i == commands.length)
+	{
+		outputarea.innerHTML += Clean("Please enter a valid command.");
+	}
+	
 	outputarea.scrollTop = outputarea.scrollHeight;
 }
 
@@ -63,7 +72,24 @@ var Clean = function(text)
 
 var PrintFirstRunText = function()
 {
-	outputarea.innerHTML += Clean("Welcome, AI!\n");
-	outputarea.innerHTML += Clean("Your mission is to do something...\n");
-	outputarea.innerHTML += Clean(player.location.description + "\n");	
+	PrintLog("Welcome, AI!\n");
+	PrintLog("Your mission is to do something...\n");
+	GeneralScanResult();
+}
+
+var PrintLog = function(text)
+{
+	outputarea.innerHTML += Clean(text);
+} 
+
+var GeneralScanResult = function()
+{
+	PrintLog("You are in " + player.location.description + ".\nIn the distance you see ");
+	for (var i = 0; i < player.location.links.length; i++)
+	{
+		PrintLog(player.location.links[i].description);
+		if (i + 1 != player.location.links.length)
+			PrintLog(", ");
+	}
+	PrintLog(".\n");
 }
