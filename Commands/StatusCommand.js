@@ -12,7 +12,10 @@ var StatusCommand = function()
 	{
 		return "Fuel: " + player.fuel + 
 			"\nHull integrity: " + player.hull + 
-			"\nCloak status: " + player.cloak + "\n\n";
+			"\nCloak status: " + player.cloak + 
+			"\nWeapons: " + (player.hasWeapon("lasers") ? "[Lasers] " : "") +
+				(player.hasWeapon("missiles") ? "[Missiles] " : "") +
+			"\n\n";
 	}
 }
 

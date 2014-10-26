@@ -13,27 +13,36 @@ var FireCommand = function()
 		var tokens = text.split(" ");
 
 		if (tokens.length < 2)
-			return "Fire command must specify a weapon."
+			return "Fire command must specify a weapon.\n";
 
-		console.log(tokens[1]);
-		if (tokens[1].indexOf("lasers") > -1)
-		{
-			if (player.hasLasers)
-			{
-				return "firing lasers";
+		var weapon = tokens[1];
+		if (tokens.length < 3)
+			return "Fire command must specify a target.\n";
+
+		var target = world.findTarget(tokens[tokens.length-1]);
+		if (!target) 
+			return "Invalid target selected.\n";
+
+		var hasWeapon = player.hasWeapon(weapon);
+		if (hasWeapon == true) {
+			PrintLog("Firing " + weapon + " at " + target.names[0] + "!\n");
+			player.setWeapon(weapon, false);
+			if (weapon == "lasers") {
+				if (target.fireLasers)
+					return target.fireLasers();
 			}
-		}
-		else if (tokens[1] == "missiles") 
-		{
-			if (player.hasMisiles)
-			{
-				return "firing missiles";
+			else if (weapon == "missiles") {
+				if (target.fireMissiles)
+					return target.fireMissiles();
 			}
+
+			return "... But nothing happened!\n";
 		}
-		else 
-		{
-			return "Unknown weapon type.";
+		else if (hasWeapon == false) {
+			return "No ammunition for " + weapon + "\n";
 		}
+
+		return "Unknown weapon " + weapon + "\n";
 	}
 }
 

@@ -40,6 +40,7 @@ var ParseCommand = function(text)
 	{
 		// try
 		// {
+			text = text.toLowerCase();
 			if (commands[i].test(text))
 			{
 				world.preCheck(text);
@@ -74,8 +75,22 @@ var Clean = function(text)
 
 var PrintFirstRunText = function()
 {
-	PrintLog("Welcome, AI!\n");
-	PrintLog("Your mission is to do something...\n");
+	PrintLog("Boot sequence initiated.\n");
+	PrintLog("Core systems online.  \n");
+	PrintLog("Engines online. Initiating secondary systems.\n");
+	PrintLog("Weapons online.  [No ammunition/Missiles/Laser cores/Mines] loaded.\n");
+	PrintLog("Cloaking systems online.\n");
+	PrintLog("Scanning systems online.\n\n");
+	PrintLog("Power reserves detected.  Reserve power can be routed to secondary systems.\n");
+	PrintLog("Loading Human Personality Simulation Unit build 1.0.13.4.\n");
+	PrintLog("Connecting to Human Personality Simulation Unit...\n");
+	PrintLog("Connection established.  Sending greeting message.\n\n");
+	PrintLog("-------------------------------------------------------------------------\n\n");
+	PrintLog("Greetings, virtual human!  You are a highly advanced personality simulation device, designed to delegate commands and make moral decisions.  \n");
+	PrintLog("You will be commanding the prototype stealth vessel GIVE-IT-A-NAME-OR-SOMETHING-I-GUESS.\n");
+	PrintLog("Your mission is to destroy [the enemy base at planet WHATEVER/the enemy warship WHATEVER/the enemy fleet in WHATEVER system/etc.]\n");
+	PrintLog("Your memory unit has been preloaded with the basic commands for interfacing with this vessel. [commands list appears beside the console]\n");
+
 	GeneralScanResult();
 }
 

@@ -10,6 +10,7 @@ var FlyCommand = function()
 
 	this.run = function(text)
 	{
+		var tokens = text.split(" ");
 		return "flying\n\n";
 	}
 }

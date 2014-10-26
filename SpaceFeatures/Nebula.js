@@ -23,6 +23,7 @@ var Nebula = function()
 	this.fireLasers = function() 
 	{
 		self.onFire = true;
+		// todo alert enemies? destroy enemies?
 		return "The swiriling gases in the nebula ignite in a glorious blaze!";
 	}
 }
