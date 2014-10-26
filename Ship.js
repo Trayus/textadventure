@@ -14,6 +14,7 @@ var Ship = function()
 	this.poweredSystem = "engines";
 
 	this.location;
+	this.featureAt = null;
 
 	this.hasWeapon = function(weapon) {
 		return self.weapons[weapon];

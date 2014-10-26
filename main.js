@@ -101,7 +101,10 @@ var PrintLog = function(text)
 
 var GeneralScanResult = function()
 {
-	PrintLog("Current location: " + player.location.description + ".\nIn the distance, your scanners detect ");
+	PrintLog("Current location: " + 
+		(player.featureAt ? player.featureAt.names[0] + ", " : "") +
+		player.location.description + 
+		".\nIn the distance, your scanners detect ");
 	for (var i = 0; i < player.location.links.length; i++)
 	{
 		PrintLog(player.location.links[i].description);
