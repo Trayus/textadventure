@@ -19,21 +19,20 @@ var ScanCommand = function()
 		if (items.length == 1)
 		{
 			GeneralScanResult();
-			return "";
 		}
 		else
 		{
-			var target = world.findTarget(items[1]);
+			var target = world.findTarget(items[items.length-1]);
 			if (target != null)
 			{
 				if (target.scan)
 				{
-					return target.scan();
+					target.scan();
 				}
 			}
 			else
 			{
-				return "Cannot scan target.";
+				PrintLog("Cannot scan target " + items[items.length-1]);
 			}
 		}
 	}

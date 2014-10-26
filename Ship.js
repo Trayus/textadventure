@@ -6,9 +6,12 @@ var Ship = function()
 	this.cloak = "Off";
 
 	this.weapons = {
-		lasers: true,
+		lasers: true, // Change these defaults, I left them as true for now
 		missiles: true
 	}
+
+	this.systems = ["engines", "cloak", "weapons"];
+	this.poweredSystem = "engines";
 
 	this.location;
 
@@ -19,5 +22,12 @@ var Ship = function()
 	this.setWeapon = function(weapon, value) {
 		if (self.weapons[weapon])
 			self.weapons[weapon] = value;
+	}
+
+	this.damageHull = function(amt) {
+		self.hull -= amt;
+		PrintLog("Hull integrity at " + "%\n");
+		if (self.hull <= 0)
+			GameOver();
 	}
 }

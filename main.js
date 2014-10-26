@@ -44,7 +44,7 @@ var ParseCommand = function(text)
 			if (commands[i].test(text))
 			{
 				world.preCheck(text);
-				PrintLog(commands[i].run(text));
+				commands[i].run(text);
 				world.postCheck(text);
 				
 				break;
@@ -116,4 +116,10 @@ var GeneralScanResult = function()
 			PrintLog(", ");
 	}
 	PrintLog(".\n");
+}
+
+var GameOver = function()
+{
+	PrintLog("NOOOOOOOOOO!!!!\n\n\n");
+	commands = [];
 }

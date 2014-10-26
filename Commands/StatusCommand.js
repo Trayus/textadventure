@@ -10,12 +10,12 @@ var StatusCommand = function()
 
 	this.run = function(text)
 	{
-		return "Fuel: " + player.fuel + 
+		PrintLog("Fuel: " + player.fuel + 
 			"\nHull integrity: " + player.hull + 
 			"\nCloak status: " + player.cloak + 
 			"\nWeapons: " + (player.hasWeapon("lasers") ? "[Lasers] " : "") +
 				(player.hasWeapon("missiles") ? "[Missiles] " : "") +
-			"\n\n";
+			"\n\n");
 	}
 }
 

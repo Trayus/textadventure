@@ -7,7 +7,7 @@ var World = function()
 	this.startNode;
 	this.endNode;
 	
-	this.populate = new Function()
+	this.populate = function()
 	{
 		console.log("Populating world");
 		
@@ -15,9 +15,20 @@ var World = function()
 		
 		for (var i = 0; i < numNodes && possibleNodes.length > 0; i++)
 		{
-			var newNode = possibleNodes.splice(Math.floor(Math.random() * possibleNodes.length), 1)[0];
-			newNode.initializeFeatures();
-			self.map.push(newNode);
+			var node = possibleNodes.splice(Math.floor(Math.random() * possibleNodes.length), 1)[0];
+
+			// For now, I just copy the list of all features and prune till the number
+			// we want is remaining
+			var featureCount = Math.min(node.possibleFeatures.length, 3);
+			var features = node.possibleFeatures.slice(0);
+			while (features.length > featureCount) {
+				var toRemove = Math.floor(Math.random() * features.length);
+				features.splice(toRemove, 1);
+			}
+			node.features = features;
+
+			console.log(node.names[0] + " features: ", node.features);
+			self.map.push(node);
 		}
 		
 		for (var i = 0; i < self.map.length; i++)
